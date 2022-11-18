@@ -1,9 +1,9 @@
 
-# MESSI
+# MESSI  :atom:
 
 ## Multi Ensamble Strategy for Structural identification
 
-*Graphical Abstract aca*
+![GRAPH_abstract2](https://user-images.githubusercontent.com/101136961/202787005-8666c08e-7126-46ae-a3d6-5f04068e9bde.jpg)
 
 This repository contains all codes and data required to run MESSI calculations. 
 
