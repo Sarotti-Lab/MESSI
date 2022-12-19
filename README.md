@@ -70,12 +70,28 @@ In order to test the correct software operation is recommended to run the provid
 
 ![image](https://user-images.githubusercontent.com/101136961/208430237-4d7039a8-2766-4a66-8b96-2c02c1c3319f.png)
 
+## Workflow and general recommendations
+
+>**Step 1:** Despite the new MESSI can handle any amount of isomers, keeping the number of candidates to a minimum has several advantages, as it reduces both the overall computational cost and the probability that the calculated data for an incorrect isomer ends up having better fit with the experimental values than the correct candidate.
+
+>**Step 2:** The conformational search should provide a good description of the conformational landscape of the system under study. Improper computational work might lead to potentially negative consequences in the overall results. Systematic sampling is always recommended, but impractical in highly flexible molecules. In those cases, stochastic searches using a reasonably large number of steps should be carried out. To avoid missing potentially relevant conformations, all conformations within a safe energy window from the corresponding global minimum should be kept. For this application, we recommend a 10 kcal/mol cutoff value using the *MMFFaq* force field. 
+
+>**Step 3:** NMR and SCF calculation for all conformers of all candidate structures must be carried out at the levels PCM/mPW1PW91/6-31+G** and SMD/B3LYP/6-31+G** level respectively. 
+
+>**Step 4:** The output files must be compiled in a folder. Additionally an Excel file with the experimental data and labels is needed.
+
+>**Step 5:** Run the script messi.py  to perform the PCM-DP4+, SMD-DP4+ and MESSI probabilities calculations. The script will open a window where you can select the folder that contains the Gaussian output files, as *.log or *.out; and the Excel input file. The script feeds on the corresponding NMR and SCRF/SMD single point Gaussian output files. Both types of calculations could be running separately or together through the "link" option. The script automatically extract the isotropic shielding tensors and energies from each output and classifies them per isomer.  Finally, the chemical shifts are averaged according the filter type and correlated with the experimental data to use it in the DP4+ formalism. The results are printed in an Excel file named ‘MESSI_Results.xlsx’.
+>
+>> <picture>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208433342-27e5602c-1dbf-453a-986e-49e86ba8cc23.png" width="640" height="376"/>
+</picture>
+
 ## Case study: 1,6-anhydrohexopyranosides
 
 In order to illustrate the MESSI workflow, we present the analysis of 1,6-anhydrohexopyranosides family. As indicated in the Figure, there are eight possible isomers.
 
 > <picture>
- <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208425537-854c7fc8-5093-457f-9d6b-954720e187ba.png" width="640" height="376"/>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208425537-854c7fc8-5093-457f-9d6b-954720e187ba.png" width="770" height="460"/>
 </picture>
 
 >Following the recommended computational procedure, a total number of 130 conformers were found after the optimization at the B3LYP/6-31G* level (the standard for DP4+ calculations). Each structure was submitted to NMR and SCRF calculations at the PCM/mPW1PW91/6-31+G** and SMD/B3LYP/6-31+G** level respectively. The corresponding output files are provided in the Folder “Example”. According to Gaussian numbering scheme, the labels corresponding to each nuclei are given in Figure, Carbon label followed by its corresponding proton(s) label(s) between parenthesis.
