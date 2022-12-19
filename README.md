@@ -53,20 +53,44 @@ In order to test the correct software operation is recommended to run the provid
 >**“shifts” sheet Structure:** the first column *“nuclei”* contain the identity of the atom ‘c or C’ for <sup>13</sup>C and ‘h or H’ for hydrogen atoms. The second column *“sp2”* serves to indicate **0** (for sp<sup>3</sup> C or H attached to) or **1** (for sp<sup>2</sup> and sp).  The third column *“exp_data”* contains the experimental chemical shifts. The column *“exchange”* serves to indicate by any character experimental data interchangeable (for instance two diatereotopics H must be indicated by an *“a”* in this column, this will cause for each candidate both the experimental and calculated values to be ordered from highest to lowest. The following columns are intended to place the labels of the nuclei associated to the corresponding chemical shift. If two or more values are added in that region, the isotropic shielding values will be averaged (as in the case of methyl groups or equivalent methylene groups). In the cases where isomers have different labels, there should be three columns for each isomer as indicated below.
 
 <picture>
- <img alt="Show" src="https://user-images.githubusercontent.com/101136961/207889663-2fc393f1-6cfe-44e8-a21a-377459b1a176.png" width="800" height="470"/>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208429804-b633ad4b-6f7e-4146-b59c-a291f4b09472.png" width="800" height="470"/>
 </picture>
 
-**3) The output excel file:** once the messi.py is executed, a file named ‘MESSI_Results.xlsx’ is created in the folder containing the Gaussian outputs. The file contains n+1 sheets where n is the number candidates structures:
+**3) The output excel file:** once the messi.py is executed, a file named *‘MESSI_Results.xlsx’* is created in the folder containing the Gaussian outputs. The file contains *n*+1 sheets where *n* is the number candidates structures:
 
 >**Results sheet:**  this sheet contain the *PCM-DP4+* (row 19, DP4+ standard), *SMD-DP4+* (row 20, DP4+ standard but using SCF energies at the level SMD/B3LYP/6-31+G**), from row 3 to 18 you can find each of the *16 selected ensembles* and in the second row it’s the average probability named ***MESSI***.  These probabilities are the full-DP4+ if both data <sup>1</sup>H and <sup>13</sup>C are available or it can be a partial probability, depending on whether data from H or C is used.
 
->![image](https://user-images.githubusercontent.com/101136961/207931725-4a38a08b-730b-4648-abe4-ac7f55112123.png)
+><picture>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/207931725-4a38a08b-730b-4648-abe4-ac7f55112123.png" width="800" height="470"/>
+</picture>
 
 >**NOTE:** *It is important to point out that filters 4, 11 y 12 remove a fixed energy window of 1 Kcal from minimum, so if any isomer is left without conformations the probability will be 0 for that isomer. However, to notice of this situation, the cells corresponding to the isomer that did not participate in that ensemble will be indicated in gray.*
 
->**Isomers tensors sheets:** the excel file will contain as many sheets as candidate structures you modeled label as “Tens_Isomer N”, where N is the isomer number. Each sheet contains the weighted isotropic shielding constants according to the used ensemble; each assembly will be represented in a row in the same order as the probability results. As indicate in Figure 3.
+>**Isomers tensors sheets:** the excel file will contain as many sheets as candidate structures you modeled label as “Tens_Isomer N”, where N is the isomer number. Each sheet contains the weighted isotropic shielding constants according to the used ensemble; each assembly will be represented in a row in the same order as the probability results. As indicate in Figure.
 
-![image](https://user-images.githubusercontent.com/101136961/207932075-e29c7a3e-92c9-406f-8e57-62c5e543bae2.png)
+![image](https://user-images.githubusercontent.com/101136961/208430237-4d7039a8-2766-4a66-8b96-2c02c1c3319f.png)
 
+## Case study: 1,6-anhydrohexopyranosides
 
+In order to illustrate the MESSI workflow, we present the analysis of 1,6-anhydrohexopyranosides family. As indicated in the Figure, there are eight possible isomers.
+
+> <picture>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208425537-854c7fc8-5093-457f-9d6b-954720e187ba.png" width="640" height="376"/>
+</picture>
+
+>Following the recommended computational procedure, a total number of 130 conformers were found after the optimization at the B3LYP/6-31G* level (the standard for DP4+ calculations). Each structure was submitted to NMR and SCRF calculations at the PCM/mPW1PW91/6-31+G** and SMD/B3LYP/6-31+G** level respectively. The corresponding output files are provided in the Folder “Example”. According to Gaussian numbering scheme, the labels corresponding to each nuclei are given in Figure, Carbon label followed by its corresponding proton(s) label(s) between parenthesis.
+
+><picture>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208426346-58680274-4ada-482d-af23-713d141f1a4e.png" width="215" height="224"/>
+</picture>
+
+## MESSI Analysis
+
+MESSI calculations were running for the eight possible distereoisomer, and placed in a folder. Once the script is run, the resulting excel report file *“MESSI_Results”* will be generated.
+
+> ### MESSI input and output excel files
+
+![image](https://user-images.githubusercontent.com/101136961/208428264-15c58051-c2c7-44db-917a-399960f53920.png)
+
+![image](https://user-images.githubusercontent.com/101136961/208428589-cb4b4bd7-358d-4ea7-8826-489a478b1675.png)
 
