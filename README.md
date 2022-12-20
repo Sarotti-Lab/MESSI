@@ -91,7 +91,7 @@ In order to test the correct software operation is recommended to run the provid
 In order to illustrate the MESSI workflow, we present the analysis of 1,6-anhydrohexopyranosides family. As indicated in the Figure, there are eight possible isomers.
 
 > <picture>
- <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208425537-854c7fc8-5093-457f-9d6b-954720e187ba.png" width="770" height="460"/>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208667453-a3f8c7ce-b338-4260-9b57-5098232dc80f.png" width="616" height="344"/>
 </picture>
 
 >Following the recommended computational procedure, a total number of 130 conformers were found after the optimization at the B3LYP/6-31G* level (the standard for DP4+ calculations). Each structure was submitted to NMR and SCRF calculations at the PCM/mPW1PW91/6-31+G** and SMD/B3LYP/6-31+G** level respectively. The corresponding output files are provided in the Folder “Example”. According to Gaussian numbering scheme, the labels corresponding to each nuclei are given in Figure, Carbon label followed by its corresponding proton(s) label(s) between parenthesis.
