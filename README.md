@@ -44,7 +44,7 @@ In order to test the correct software operation is recommended to run the provid
 
 >The NMR and SCRF/SMD energies calculation could be in the same or different outputs. If they are separated, both file must begin with the same name (**`n_*_m*`**) and a suffix must be added in order to differentiate the calculation type. If the number of files for NMR calculations does not match the number of SMD energy calculations the script will not run. 
 
->*The script handles outputs from Gaussian 03, 09 and 16.*
+>*The script handles outputs from Gaussian 09 and 16.*
 
 >*Note*: Name files adequately is essential in order to match SMD energy with the NMR data for each conformer.
 
