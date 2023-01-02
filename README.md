@@ -17,18 +17,23 @@
 **MESSI.py** needs python 3.8 or later to work. The module can be installed by console using:
 `pip3 install messi_nmr`
 
-Usage by console: `messi`
+MESSI needs `tkinter` module to work. It will be automatically installed by pip in Windows and macOS, but for linux it must be installed separately by `apt-get`.
 
->Installing the python module will automatically generate a `messi.py` shortcut on your desktop, which allows direct execution of the program without the use of a console.
+>The program can be executed by console using: `messi`
+
+>or generate a `messi.py` shortcut on the desktop, which allows direct execution of the program without the use of a console, using: `messi_exe`
+>
 In order to test the correct software operation is recommended to run the provided example, which could be download by clicking the buttom `Create Example`. This will create a folder name `Example_messi_nmr` in desktop containing all the files needed by de use of MESSI. 
 
->![image](https://user-images.githubusercontent.com/101136961/207873766-486bf7d6-c95e-405b-a70c-72be24fbfd47.png)
+>> <picture>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/210242460-2b028889-9d12-41f9-8323-c672cf0d092c.png" width="704" height="300"/>
+</picture>
 
 ### User Guide
 
 **Terms of use.** You need to create a folder containing the following files:
 
-      1) The outputs of the NMR and SCF calculations (all conformers for all isomers).
+      1) The Gaussian output files of the NMR and SCRF/SMD calculations (all conformers for all isomers).
 
       2) An excel file containing the experimental data and the labels of each nucleus associated with each experimental value.
        
@@ -50,25 +55,25 @@ In order to test the correct software operation is recommended to run the provid
 
 **2) The input Excel file:** The experimental data and the labels of the candidate structures must be placed in an excel file following the next rules. The excel file should be constituted by one sheet; containing the data of the NMR chemical shifts (*named* ‘shifts’). 
 
->**“shifts” sheet Structure:** the first column *“nuclei”* contain the identity of the atom ‘c or C’ for <sup>13</sup>C and ‘h or H’ for hydrogen atoms. The second column *“sp2”* serves to indicate **0** (for sp<sup>3</sup> C or H attached to) or **1** (for sp<sup>2</sup> and sp).  The third column *“exp_data”* contains the experimental chemical shifts. The column *“exchange”* serves to indicate by any character experimental data interchangeable (for instance two diatereotopics H must be indicated by an *“a”* in this column, this will cause for each candidate both the experimental and calculated values to be ordered from highest to lowest. The following columns are intended to place the labels of the nuclei associated to the corresponding chemical shift. If two or more values are added in that region, the isotropic shielding values will be averaged (as in the case of methyl groups or equivalent methylene groups). In the cases where isomers have different labels, there should be three columns for each isomer as indicated below.
+>**“shifts” sheet Structure:** the first column *“nuclei”* contain the identity of the atom ‘c or C’ for <sup>13</sup>C and ‘h or H’ for hydrogen atoms. The second column *“sp2”* serves to indicate **0** (for sp<sup>3</sup> C or H attached to) or **1** (for sp<sup>2</sup> and sp).  The third column *“exp_data”* contains the experimental chemical shifts. The column *“exchange”* allows to indicate interchangeable signals (for example, two diastereotopic hydrogens). Any character can be used to indicate a pair of interchangeable signals, which will cause that the experimental and calculated values to be ordered upside-down. When dealing with more than one pair of interchangeable signals, different characters should be used to differentiate them. For example, it can be used the letter “a to indicate one pair, and the letter “b” to indicate the other pair. The following columns are intended to place the labels of the nuclei associated to the corresponding chemical shift. If two or more values are added in that region, the isotropic shielding values will be averaged (as in the case of methyl groups or equivalent methylene groups). If the isomers under study have different labeling schemes (as in the case of constitutional isomers), three columns for each isomer should be provided as indicated below.
 
 <picture>
- <img alt="Show" src="https://user-images.githubusercontent.com/101136961/208429804-b633ad4b-6f7e-4146-b59c-a291f4b09472.png" width="800" height="470"/>
+ <img alt="Show" src="https://user-images.githubusercontent.com/101136961/210243637-0c7bf77d-968d-4b46-8d75-2337e3a34837.png" width="800" height="470"/>
 </picture>
 
 **3) The output excel file:** once the messi.py is executed, a file named *‘MESSI_Results.xlsx’* is created in the folder containing the Gaussian outputs. The file contains *n*+1 sheets where *n* is the number candidates structures:
 
->**Results sheet:**  this sheet contain the *PCM-DP4+* (row 19, DP4+ standard), *SMD-DP4+* (row 20, DP4+ standard but using SCF energies at the level SMD/B3LYP/6-31+G**), from row 3 to 18 you can find each of the *16 selected ensembles* and in the second row it’s the average probability named ***MESSI***.  These probabilities are the full-DP4+ if both data <sup>1</sup>H and <sup>13</sup>C are available or it can be a partial probability, depending on whether data from H or C is used.
+>**Results sheet:**  contain the *PCM-DP4+* (row 19, standard DP4+), *SMD-DP4+* (row 20, standard DP4+ using the energies computed at the SMD/B3LYP/6-31+G** level), and the DP4+ results computed for the selected 16 ensembles (rows 3-18). The averaged values of those 16 calculations (***MESSI***.) are shown in row 2. If both <sup>1</sup>H and <sup>13</sup>C are used, the probabilities shown correspond to the full DP4+ results. In case only <sup>1</sup>H, or <sup>13</sup>C, data are used (not recommended), the probabilities shown correspond to H-DP4+ or C-DP4+ values, respectively.
 
 ><picture>
  <img alt="Show" src="https://user-images.githubusercontent.com/101136961/207931725-4a38a08b-730b-4648-abe4-ac7f55112123.png" width="800" height="470"/>
 </picture>
 
->**NOTE:** *It is important to point out that filters 4, 11 y 12 remove a fixed energy window of 1 Kcal from minimum, so if any isomer is left without conformations the probability will be 0 for that isomer. However, to notice of this situation, the cells corresponding to the isomer that did not participate in that ensemble will be indicated in gray.*
+>**NOTE:** *It is important to point out that ensembles 4, 11 y 12 are created by removing all conformations within 1 kcal/mol from the corresponding global minimum. In some systems with flat potential energy surface, the full conformational space could be confined within that energy window. This will cause all the conformations of that isomer to be eliminated, and therefore its probability will be zero. To indicate that situation, the corresponding cells will be highlighted in gray (in the given example, column H, rows 13 and 14).*
 
->**Isomers tensors sheets:** the excel file will contain as many sheets as candidate structures you modeled label as “Tens_Isomer N”, where N is the isomer number. Each sheet contains the weighted isotropic shielding constants according to the used ensemble; each assembly will be represented in a row in the same order as the probability results. As indicate in Figure.
-
-![image](https://user-images.githubusercontent.com/101136961/208430237-4d7039a8-2766-4a66-8b96-2c02c1c3319f.png)
+>**Ten_isomers sheets:** the Excel file contains as many sheets as candidate structures are considered, labeled as “Tens_Isomer N”, where N is the isomer number. Each cell contains the isotropic shielding values corresponding to each ensemble (row) and Gaussian label (column). For example, the value shown in cell C2 (91.5338) is the isotropic shielding value of the atom nº 2 (according to Gaussian labeling scheme) computed using ensemble 2 [A-1-0-2]. 
+>
+![image](https://user-images.githubusercontent.com/101136961/210259165-1156d7c3-68ca-4112-9166-f5e66b48da30.png)
 
 ## Workflow and general recommendations
 
