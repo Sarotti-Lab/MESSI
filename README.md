@@ -31,7 +31,8 @@ In order to test the correct software operation is recommended to run the provid
 
 ### User Guide
 
-**Terms of use.** You need to create a folder containing the following files:
+**Terms of use.** To run MESSI is required that the information is located in a folder containing the following
+files:
 
       1) The Gaussian output files of the NMR and SCRF/SMD calculations (all conformers for all isomers).
 
